@@ -58,11 +58,11 @@ class Setting < ActiveRecord::Base
       return cache[name] if cache.key?(name)
 
       # Check database
-      if database_and_table_exists? && setting = find_by_name(name.to_s) && !setting.value.nil?
+      if database_and_table_exists? && setting = find_by_name(name.to_s) && setting&.value.present?
         return cache[name] = setting.value
         end
       # Check YAML settings
-      return cache[name] = yaml_settings[name] if yaml_settings.key?(name)
+      cache[name] = yaml_settings[name] if yaml_settings.key?(name)
     end
 
     # Set setting value
