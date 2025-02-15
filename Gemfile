@@ -5,16 +5,18 @@ source 'https://rubygems.org'
 # Uncomment the database that you have configured in config/database.yml
 # ----------------------------------------------------------------------
 
-case ENV['CI'] && ENV['DB']
-when 'sqlite'
-  gem 'sqlite3', '~> 1.6.8'
-when 'mysql'
-  gem 'mysql2'
-when 'postgres'
-  gem 'pg'
-else
-  gem 'pg'
-end
+# case ENV['CI'] && ENV['DB']
+# when 'sqlite'
+#   gem 'sqlite3', '~> 1.6.8'
+# when 'mysql'
+#   gem 'mysql2'
+# when 'postgres'
+#   gem 'pg'
+# else
+#   gem 'pg'
+# end
+
+gem 'pg'
 
 # Removes a gem dependency
 def remove(name)
@@ -78,7 +80,7 @@ group :test do
   gem 'database_cleaner'
   gem 'zeus', platform: :ruby unless ENV["CI"]
   gem 'timecop'
-  gem 'sqlite3', '~> 1.6.8'
+  # gem 'sqlite3', '~> 1.6.8'
   gem 'webrick'
 end
 
